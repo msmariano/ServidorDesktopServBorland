@@ -1,0 +1,24 @@
+//---------------------------------------------------------------------------
+#include "ContrRemPortd.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+
+TServerContrRemPort *ServerContrRemPort;
+//---------------------------------------------------------------------------
+__fastcall TServerContrRemPort::TServerContrRemPort(TComponent* Owner)
+	: TService(Owner)
+{
+}
+
+TServiceController __fastcall TServerContrRemPort::GetServiceController(void)
+{
+	return (TServiceController) ServiceController;
+}
+
+void __stdcall ServiceController(unsigned CtrlCode)
+{
+	ServerContrRemPort->Controller(CtrlCode);
+}
+//---------------------------------------------------------------------------
+
